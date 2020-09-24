@@ -18,14 +18,18 @@ class EmployeeTest extends TestCase
 
     use RefreshDatabase, WithFaker;
     private $admin;
+    private $standard_user;
 
     public function setup(): void
     {
         parent::setup();
-        Artisan::call('passport:install');
         $this->seed('EmployeeTypeSeeder');
         $this->admin = User::factory()->create([
             'admin' => true
+        ]);
+
+        $this->standard_user = User::factory()->create([
+            'admin' => false
         ]);
     }
 
@@ -58,6 +62,19 @@ class EmployeeTest extends TestCase
         ]);
         $this->assertDatabaseHas('employees', [
             'name' => $name
+        ]);
+    }
+
+    public function test_non_admin_cannot_create_employee()
+    {
+        $this->withoutExceptionHandling();
+        Passport::actingAs($this->standard_user);
+        $response = $this->post(route('employees.store'), [
+            'name' => $this->faker->name(),
+        ]);
+        $response->assertStatus(401);
+        $response->assertJson([
+            'message' => 'Sorry you do not have access to perform that function'
         ]);
     }
 

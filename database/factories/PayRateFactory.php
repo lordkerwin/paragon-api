@@ -22,7 +22,7 @@ class PayRateFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'rate' => $this->faker->unique(false, 1000)->randomFloat(2, 5, 20)
         ];
     }
 }

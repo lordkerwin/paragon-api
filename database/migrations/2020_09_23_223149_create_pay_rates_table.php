@@ -15,6 +15,8 @@ class CreatePayRatesTable extends Migration
     {
         Schema::create('pay_rates', function (Blueprint $table) {
             $table->id();
+            $table->decimal('rate', 11, 2)->unique();
+            $table->softDeletes();
             $table->timestamps();
         });
     }
