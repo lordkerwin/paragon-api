@@ -2,8 +2,10 @@
 
 namespace Tests\Feature;
 
+use App\Models\Employee;
 use App\Models\PayRate;
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Laravel\Passport\Passport;
@@ -30,7 +32,6 @@ class PayRateTest extends TestCase
         PayRate::factory()->count(20)->create();
 
         $response = $this->get(route('payrates.index'));
-        dd($response);
         $response->assertSuccessful();
         $response->assertJsonStructure([
             'data' => [
