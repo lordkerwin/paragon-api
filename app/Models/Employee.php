@@ -31,7 +31,8 @@ class Employee extends Model
 
     public function payRates()
     {
-        return $this->belongsToMany(PayRate::class, 'employee_pay_rate')->withPivot('from', 'to');
+        return $this->belongsToMany(PayRate::class, 'employee_pay_rate')
+            ->withPivot('from', 'to');
     }
 
     public function department()
@@ -41,14 +42,8 @@ class Employee extends Model
 
     public function getCurrentPayRate()
     {
-        $pay_rate = $this->payRates()
-            ->wherePivot('from', '<=', Carbon::now())
-            ->wherePivot('to', '>', Carbon::now())
-            ->orWhere(function ($query) {
-                $query->wherePivot('from', '<=', Carbon::now())
-                    ->wherePivot('to', null);
-            })
-            ->get();
-        return $pay_rate;
+
+        // no idea what to do here....
+
     }
 }

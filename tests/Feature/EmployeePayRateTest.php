@@ -85,9 +85,44 @@ class EmployeePayRateTest extends TestCase
             'to' => null
         ]);
 
-        $current_payrate = $employee->getCurrentPayRate()->first();
+
+        dd($employee->getCurrentPayRate());
+        $current_pay_rate = $employee->getCurrentPayRate()->first();
 
 
-        $this->assertTrue($current_payrate->rate == $rate_two);
+        $this->assertTrue($current_pay_rate->rate == $rate_two);
+    }
+
+    public function test_employee_single_pay_rates()
+    {
+        $this->withoutExceptionHandling();
+        $employee = Employee::factory()->create();
+
+        $pay_rate_one = PayRate::factory()->create([
+            'rate' => $rate_one = $this->faker->randomFloat(2, 5, 10)
+        ]);
+
+        // create the first pivot for a payrate that was 30 days ago and no expiration
+        $employee->payRates()->attach($pay_rate_one->id, [
+            'from' => $thirty_days_ago = Carbon::now()->subDays(30)->startOfDay(),
+            'to' => null
+        ]);
+
+
+        $this->assertDatabaseHas('employee_pay_rate', [
+            'employee_id' => $employee->id,
+            'pay_rate_id' => $pay_rate_one->id,
+            'from' => $thirty_days_ago,
+            'to' => null
+        ]);
+
+
+//        dd($employee->getCurrentPayRate());
+
+        $current_pay_rate = $employee->getCurrentPayRate()->first();
+
+
+
+        $this->assertTrue($current_pay_rate->rate == $rate_one);
     }
 }

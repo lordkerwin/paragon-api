@@ -7,5 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class EmployeePayRate extends Model
 {
+    protected $table = 'employee_pay_rate';
+
     use HasFactory;
 }
