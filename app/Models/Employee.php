@@ -6,6 +6,7 @@ use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Facades\Log;
 
 class Employee extends Model
 {
@@ -40,10 +41,24 @@ class Employee extends Model
         return $this->belongsTo(Department::class);
     }
 
-    public function getCurrentPayRate()
+    public function getCurrentPayRate($date = null)
     {
 
-        // no idea what to do here....
+        if (empty($date)) {
+            $date = Carbon::now();
+        }
 
+        return $this->payRates()
+            ->where(function ($query) use ($date) {
+                $query->where(function ($q) use ($date) {
+                    $q->where('employee_pay_rate.from', '<=', $date);
+                    $q->where('employee_pay_rate.to', null);
+                });
+                $query->orWhere(function ($q) use ($date) {
+                    $q->where('employee_pay_rate.from', '<=', $date);
+                    $q->where('employee_pay_rate.to', '>', $date);
+                });
+            })
+            ->first();
     }
 }

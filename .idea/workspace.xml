@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9a40fa30-2909-4827-a69d-4b3bfd39ee72" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Models/Employee.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Employee.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/EmployeePayRate.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/EmployeePayRate.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tests/Feature/EmployeePayRateTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Feature/EmployeePayRateTest.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -180,7 +180,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1601040964707</updated>
-      <workItem from="1601040966615" duration="2989000" />
+      <workItem from="1601040966615" duration="5498000" />
     </task>
     <servers />
   </component>
@@ -212,9 +212,9 @@
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
     <state x="662" y="279" width="596" height="522" key="find.popup/-1920.0.1920.1080/0.0.1920.1080/1920.0.1440.900@0.0.1920.1080" timestamp="1601043637422" />
-    <state x="625" y="241" width="670" height="676" key="search.everywhere.popup" timestamp="1601043643828">
+    <state x="625" y="241" width="670" height="676" key="search.everywhere.popup" timestamp="1601072269757">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state x="625" y="241" width="670" height="676" key="search.everywhere.popup/-1920.0.1920.1080/0.0.1920.1080/1920.0.1440.900@0.0.1920.1080" timestamp="1601043643828" />
+    <state x="625" y="241" width="670" height="676" key="search.everywhere.popup/-1920.0.1920.1080/0.0.1920.1080/1920.0.1440.900@0.0.1920.1080" timestamp="1601072269757" />
   </component>
 </project>
