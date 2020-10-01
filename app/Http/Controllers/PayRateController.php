@@ -85,7 +85,7 @@ class PayRateController extends BaseController
      */
     public function show(PayRate $payRate)
     {
-        //
+        return $this->respondNotImplemented();
     }
 
     /**
@@ -108,7 +108,7 @@ class PayRateController extends BaseController
      */
     public function update(Request $request, PayRate $payRate)
     {
-        //
+        return $this->respondNotImplemented();
     }
 
     /**
