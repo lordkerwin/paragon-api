@@ -1,5 +1,9 @@
 <?php
 
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\EmployeeController;
+use App\Http\Controllers\PayRateController;
+use App\Models\Employee;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -14,6 +18,15 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
+Route::post('login', [AuthController::class, 'login'])->name('auth.login');
+
+Route::group(['middleware' => ['auth:api', 'admin']], function () {
+    // Authenticated Auth Routes
+    Route::get('logout', [AuthController::class, 'logout'])->name('auth.logout');
+
+    // Employee
+    Route::resource('employees', EmployeeController::class);
+
+    // PayRate
+    Route::resource('payrates', PayRateController::class);
 });
