@@ -2,7 +2,6 @@
 
 namespace Tests\Feature;
 
-use App\Models\Employee;
 use App\Models\PayRate;
 use App\Models\User;
 use Carbon\Carbon;
@@ -31,7 +30,7 @@ class PayRateTest extends TestCase
 
         PayRate::factory()->count(20)->create();
 
-        $response = $this->get(route('payrates.index'));
+        $response = $this->get(route('pay-rates.index'));
         $response->assertSuccessful();
         $response->assertJsonStructure([
             'data' => [
@@ -67,7 +66,7 @@ class PayRateTest extends TestCase
         $this->withoutExceptionHandling();
         Passport::actingAs($this->admin);
 
-        $response = $this->post(route('payrates.store'), [
+        $response = $this->post(route('pay-rates.store'), [
             'rate' => $rate = $this->faker->numberBetween(8, 14),
         ]);
 
@@ -88,7 +87,7 @@ class PayRateTest extends TestCase
         $this->withoutExceptionHandling();
         Passport::actingAs($this->admin);
 
-        $response = $this->post(route('payrates.store'), [
+        $response = $this->post(route('pay-rates.store'), [
             'rate' => $rate = $this->faker->numberBetween(51, 60),
         ]);
 

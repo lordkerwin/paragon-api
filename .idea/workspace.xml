@@ -1,22 +1,55 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select />
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="9a40fa30-2909-4827-a69d-4b3bfd39ee72" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.phpstorm.meta.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/_ide_helper.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Http/Controllers/EmployeePayRateController.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Http/Resources/EmployeePayRateResource.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Http/Transformers/EmployeePayRateTransformer.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/paragon-api.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/paragon-api.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/Employee.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Employee.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/EmployeeController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/EmployeeController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/app.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/app.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tests/Feature/EmployeePayRateTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Feature/EmployeePayRateTest.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/Feature/PayRateTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Feature/PayRateTest.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ComposerSettings" synchronizationState="SYNCHRONIZE">
+  <component name="ComposerSettings" doNotAsk="true" synchronizationState="SYNCHRONIZE">
     <pharConfigPath>$PROJECT_DIR$/composer.json</pharConfigPath>
     <execution />
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="PackageJsonUpdateNotifier">
+    <dismissed value="$PROJECT_DIR$/package.json" />
   </component>
   <component name="PhpWorkspaceProjectConfiguration" interpreter_name="PHP 7.3">
     <include_path>
@@ -138,19 +171,38 @@
       <path value="$PROJECT_DIR$/vendor/symfony/polyfill-php70" />
       <path value="$PROJECT_DIR$/vendor/symfony/http-kernel" />
       <path value="$PROJECT_DIR$/vendor/symfony/polyfill-php73" />
+      <path value="$PROJECT_DIR$/vendor/justinrainbow/json-schema" />
+      <path value="$PROJECT_DIR$/vendor/seld/phar-utils" />
+      <path value="$PROJECT_DIR$/vendor/seld/jsonlint" />
+      <path value="$PROJECT_DIR$/vendor/doctrine/cache" />
+      <path value="$PROJECT_DIR$/vendor/doctrine/event-manager" />
+      <path value="$PROJECT_DIR$/vendor/doctrine/dbal" />
+      <path value="$PROJECT_DIR$/vendor/barryvdh/laravel-ide-helper" />
+      <path value="$PROJECT_DIR$/vendor/barryvdh/reflection-docblock" />
+      <path value="$PROJECT_DIR$/vendor/symfony/filesystem" />
     </include_path>
   </component>
   <component name="ProjectId" id="1i0OITZiJ6ff9WSU8jeDC399ZhP" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="ASKED_SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/app/Http/Transformers" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="vue.rearranger.settings.migration" value="true" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/app/Http/Transformers" />
+    </key>
   </component>
   <component name="RunManager" selected="PHPUnit.EmployeePayRateTest.test_employee_single_pay_rates">
     <configuration name="EmployeePayRateTest" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
@@ -180,41 +232,64 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1601040964707</updated>
-      <workItem from="1601040966615" duration="5498000" />
+      <workItem from="1601040966615" duration="5862000" />
+      <workItem from="1601279548039" duration="2151000" />
+      <workItem from="1601283863029" duration="3589000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+  </component>
   <component name="WindowStateProjectService">
     <state x="640" y="99" key="#PHP" timestamp="1601041020434">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
     <state x="640" y="99" key="#PHP/-1920.0.1920.1080/0.0.1920.1080/1920.0.1440.900@0.0.1920.1080" timestamp="1601041020434" />
-    <state width="1878" height="272" key="GridCell.Tab.0.bottom" timestamp="1601041246576">
+    <state x="698" y="302" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1601286508461">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state width="1878" height="272" key="GridCell.Tab.0.bottom/-1920.0.1920.1080/0.0.1920.1080/1920.0.1440.900@0.0.1920.1080" timestamp="1601041246576" />
-    <state width="1878" height="272" key="GridCell.Tab.0.center" timestamp="1601041246575">
+    <state x="698" y="302" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1920.1080/-1920.0.1920.1080/1920.0.1440.900@0.0.1920.1080" timestamp="1601286508461" />
+    <state width="1878" height="272" key="GridCell.Tab.0.bottom" timestamp="1601075045882">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state width="1878" height="272" key="GridCell.Tab.0.center/-1920.0.1920.1080/0.0.1920.1080/1920.0.1440.900@0.0.1920.1080" timestamp="1601041246575" />
-    <state width="1878" height="272" key="GridCell.Tab.0.left" timestamp="1601041246574">
+    <state width="1878" height="272" key="GridCell.Tab.0.bottom/-1920.0.1920.1080/0.0.1920.1080/1920.0.1440.900@0.0.1920.1080" timestamp="1601075045882" />
+    <state width="1878" height="272" key="GridCell.Tab.0.center" timestamp="1601075045880">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state width="1878" height="272" key="GridCell.Tab.0.left/-1920.0.1920.1080/0.0.1920.1080/1920.0.1440.900@0.0.1920.1080" timestamp="1601041246574" />
-    <state width="1878" height="272" key="GridCell.Tab.0.right" timestamp="1601041246575">
+    <state width="1878" height="272" key="GridCell.Tab.0.center/-1920.0.1920.1080/0.0.1920.1080/1920.0.1440.900@0.0.1920.1080" timestamp="1601075045880" />
+    <state width="1878" height="272" key="GridCell.Tab.0.left" timestamp="1601075045878">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state width="1878" height="272" key="GridCell.Tab.0.right/-1920.0.1920.1080/0.0.1920.1080/1920.0.1440.900@0.0.1920.1080" timestamp="1601041246575" />
+    <state width="1878" height="272" key="GridCell.Tab.0.left/-1920.0.1920.1080/0.0.1920.1080/1920.0.1440.900@0.0.1920.1080" timestamp="1601075045878" />
+    <state width="1878" height="272" key="GridCell.Tab.0.right" timestamp="1601075045881">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state width="1878" height="272" key="GridCell.Tab.0.right/-1920.0.1920.1080/0.0.1920.1080/1920.0.1440.900@0.0.1920.1080" timestamp="1601075045881" />
     <state x="662" y="279" width="596" height="522" key="find.popup" timestamp="1601043637422">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
     <state x="662" y="279" width="596" height="522" key="find.popup/-1920.0.1920.1080/0.0.1920.1080/1920.0.1440.900@0.0.1920.1080" timestamp="1601043637422" />
-    <state x="625" y="241" width="670" height="676" key="search.everywhere.popup" timestamp="1601072269757">
+    <state x="625" y="241" width="670" height="676" key="search.everywhere.popup" timestamp="1601286889439">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state x="625" y="241" width="670" height="676" key="search.everywhere.popup/-1920.0.1920.1080/0.0.1920.1080/1920.0.1440.900@0.0.1920.1080" timestamp="1601072269757" />
+    <state x="625" y="241" width="670" height="676" key="search.everywhere.popup/-1920.0.1920.1080/0.0.1920.1080/1920.0.1440.900@0.0.1920.1080" timestamp="1601074871747" />
+    <state x="625" y="241" width="670" height="676" key="search.everywhere.popup/-1920.23.1920.1057/0.23.1920.1015/1920.23.1440.877@0.23.1920.1015" timestamp="1601074867737" />
+    <state x="625" y="241" width="670" height="676" key="search.everywhere.popup/0.0.1920.1080/-1920.0.1920.1080/1920.0.1440.900@0.0.1920.1080" timestamp="1601286889439" />
   </component>
 </project>

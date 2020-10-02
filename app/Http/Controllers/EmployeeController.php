@@ -6,17 +6,20 @@ use App\Http\Resources\EmployeeResource;
 use App\Http\Transformers\EmployeeTransformer;
 use App\Models\Employee;
 use Exception;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Validator;
+use Throwable;
 
 class EmployeeController extends BaseController
 {
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return void
      */
     public function index()
     {
@@ -26,7 +29,7 @@ class EmployeeController extends BaseController
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return JsonResponse
      */
     public function create()
     {
@@ -36,8 +39,9 @@ class EmployeeController extends BaseController
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @return JsonResponse
+     * @throws Throwable
      */
     public function store(Request $request)
     {
@@ -77,8 +81,8 @@ class EmployeeController extends BaseController
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Employee  $employee
-     * @return \Illuminate\Http\Response
+     * @param Employee $employee
+     * @return Response
      */
     public function show(Employee $employee)
     {
@@ -88,8 +92,8 @@ class EmployeeController extends BaseController
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Employee  $employee
-     * @return \Illuminate\Http\Response
+     * @param Employee $employee
+     * @return JsonResponse
      */
     public function edit(Employee $employee)
     {
@@ -99,9 +103,10 @@ class EmployeeController extends BaseController
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Employee  $employee
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @param Employee $employee
+     * @return JsonResponse
+     * @throws Throwable
      */
     public function update(Request $request, Employee $employee)
     {
@@ -141,8 +146,9 @@ class EmployeeController extends BaseController
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Employee  $employee
-     * @return \Illuminate\Http\Response
+     * @param Employee $employee
+     * @return JsonResponse
+     * @throws Throwable
      */
     public function destroy(Employee $employee)
     {
