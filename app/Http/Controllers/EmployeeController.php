@@ -12,6 +12,7 @@ use Illuminate\Http\Response;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Validator;
+use Psy\Util\Json;
 use Throwable;
 
 class EmployeeController extends BaseController
@@ -39,8 +40,8 @@ class EmployeeController extends BaseController
     /**
      * Store a newly created resource in storage.
      *
-     * @param Request $request
-     * @return JsonResponse
+     * @param  Request  $request
+     * @return EmployeeResource|JsonResponse
      * @throws Throwable
      */
     public function store(Request $request)
@@ -81,7 +82,7 @@ class EmployeeController extends BaseController
     /**
      * Display the specified resource.
      *
-     * @param Employee $employee
+     * @param  Employee  $employee
      * @return Response
      */
     public function show(Employee $employee)
@@ -92,7 +93,7 @@ class EmployeeController extends BaseController
     /**
      * Show the form for editing the specified resource.
      *
-     * @param Employee $employee
+     * @param  Employee  $employee
      * @return JsonResponse
      */
     public function edit(Employee $employee)
@@ -103,8 +104,8 @@ class EmployeeController extends BaseController
     /**
      * Update the specified resource in storage.
      *
-     * @param Request $request
-     * @param Employee $employee
+     * @param  Request  $request
+     * @param  Employee  $employee
      * @return JsonResponse
      * @throws Throwable
      */
@@ -146,7 +147,7 @@ class EmployeeController extends BaseController
     /**
      * Remove the specified resource from storage.
      *
-     * @param Employee $employee
+     * @param  Employee  $employee
      * @return JsonResponse
      * @throws Throwable
      */
@@ -165,5 +166,31 @@ class EmployeeController extends BaseController
         }
 
         return $this->respondSuccess('', $employee->name . ' has been deleted');
+    }
+
+    public function scanEvent(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'key' => 'required|exists:employees,key',
+        ]);
+
+
+        if ($validator->fails()) {
+            return $this->respondError($validator->errors()->toArray(), "Error validating input", 422);
+        }
+
+        try {
+            $employee = Employee::where('key', $request->input('key'))->first();
+        } catch (Exception $e) {
+            return $this->respondError($e->getMessage(), 'Error');
+        }
+
+        return (new EmployeeResource($employee))
+            ->additional([
+                'meta' => [
+                    'success' => true,
+                    'message' => "employee loaded"
+                ]
+            ]);
     }
 }

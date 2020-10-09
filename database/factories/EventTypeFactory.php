@@ -22,7 +22,7 @@ class EventTypeFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'name' => $this->faker->randomElement(['clock-in', 'clock-out', 'on-site', 'off-site'])
         ];
     }
 }

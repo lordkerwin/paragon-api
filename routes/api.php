@@ -3,6 +3,7 @@
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\EmployeePayRateController;
+use App\Http\Controllers\EventController;
 use App\Http\Controllers\PayRateController;
 use App\Models\Employee;
 use Illuminate\Http\Request;
@@ -19,6 +20,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+// Event
+Route::resource('events', EventController::class);
+
+Route::post('employees/scan-event', [EmployeeController::class, 'scanEvent'])->name('employees.scan');
+
+// Admin/CMS Routes
 Route::post('login', [AuthController::class, 'login'])->name('auth.login');
 
 Route::group(['middleware' => ['auth:api', 'admin']], function () {
@@ -30,8 +37,6 @@ Route::group(['middleware' => ['auth:api', 'admin']], function () {
 
     // Employee Pay Rate
     Route::resource('employee-pay-rates', EmployeePayRateController::class);
-
-
 
     // PayRate
     Route::resource('pay-rates', PayRateController::class);

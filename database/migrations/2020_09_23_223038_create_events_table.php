@@ -15,6 +15,9 @@ class CreateEventsTable extends Migration
     {
         Schema::create('events', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('event_type_id');
+            $table->foreignId('employee_id');
+            $table->boolean('processed')->default(false);
             $table->timestamps();
         });
     }

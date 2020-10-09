@@ -24,7 +24,10 @@ class EmployeeResource extends JsonResource
             'employee_type' => new EmployeeTypeResource($this->employeeType) ?? null,
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
-            'deleted_at' => $this->deleted_at ?? null
+            'deleted_at' => $this->deleted_at ?? null,
+            'last_event' => $this->getLastEvent() ?? null,
+            'available_events' => $this->getAvailableEvents()
         ];
     }
+
 }

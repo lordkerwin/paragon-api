@@ -3,6 +3,8 @@
 namespace Database\Factories;
 
 use App\Models\Event;
+use App\Models\EventType;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class EventFactory extends Factory
@@ -22,7 +24,11 @@ class EventFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'event_type_id' => 1,
+            'employee_id' => 1,
+            'processed' => false,
+            'created_at' => $date = Carbon::now()->subHours($this->faker->randomDigit),
+            'updated_at' => $date
         ];
     }
 }

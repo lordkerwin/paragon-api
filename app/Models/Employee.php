@@ -30,6 +30,11 @@ class Employee extends Model
         return $this->belongsTo(Role::class);
     }
 
+    public function events()
+    {
+        return $this->hasMany(Event::class);
+    }
+
     public function payRates()
     {
         return $this->belongsToMany(PayRate::class, 'employee_pay_rate')
@@ -43,7 +48,6 @@ class Employee extends Model
 
     public function getCurrentPayRate($date = null)
     {
-
         if (empty($date)) {
             $date = Carbon::now();
         }
@@ -61,4 +65,34 @@ class Employee extends Model
             })
             ->first();
     }
+
+    public function getLastEvent()
+    {
+        return $this->events()->orderByDesc('created_at')->first();
+    }
+
+    public function getAvailableEvents()
+    {
+        $last_event = $this->getLastEvent();
+
+        if (!$last_event) {
+            return EventType::where('name', 'clock-in')->get();
+        }
+
+        switch ($last_event->event_type_id) {
+            case EventType::retrieve('clock-in', 'id'):
+                // last event was clock in, so available events are, 'off-site' or 'clock-out'
+                return EventType::where('name', 'clock-out')->where('name', 'off-site')->get();
+            case EventType::retrieve('clock-out', 'id'):
+                // last event was clock out, so available events are, 'clock-in'
+                return EventType::where('name', 'clock-in')->get();
+            case EventType::retrieve('off-site', 'id'):
+                // last event was off-site, so available events are, 'on-site' or 'clock-out'
+                return EventType::where('name', 'clock-out')->where('name', 'on-site')->get();
+            case EventType::retrieve('on-site', 'id'):
+                // last event was on-site, so available events are, 'off-site' or 'clock-out'
+                return EventType::where('name', 'clock-out')->where('name', 'off-site')->get();
+        }
+    }
+
 }
