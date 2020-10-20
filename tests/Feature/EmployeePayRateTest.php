@@ -184,11 +184,6 @@ class EmployeePayRateTest extends TestCase
             'rate' => $rate_one = $this->faker->randomFloat(2, 5, 10)
         ]);
 
-        //        $employee->payRates()->attach($pay_rate->id, [
-        //            'from' => $three_months_ago = Carbon::now()->subMonths(3)->startOfDay(),
-        //            'to' => null
-        //        ]);
-
         $response = $this->post(route('employee-pay-rates.store'), [
             'employee_id' => $employee->id,
             'pay_rate_id' => $pay_rate->id,
@@ -204,7 +199,6 @@ class EmployeePayRateTest extends TestCase
             'to' => $to
         ]);
     }
-
 
     public function test_can_add_overlapping_pay_rates_for_employee()
     {

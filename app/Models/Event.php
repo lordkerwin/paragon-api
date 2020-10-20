@@ -14,4 +14,8 @@ class Event extends Model
         return $this->belongsTo(EventType::class);
     }
 
+    public function employee()
+    {
+        return $this->belongsTo(Employee::class);
+    }
 }

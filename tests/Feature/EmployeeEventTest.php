@@ -60,7 +60,6 @@ class EmployeeEventTest extends TestCase
         $this->assertTrue($available_events[0]->name == 'clock-in');
     }
 
-
     public function test_employee_first_scan_event()
     {
         $this->withExceptionHandling();
@@ -106,9 +105,71 @@ class EmployeeEventTest extends TestCase
         ]);
     }
 
-    public function test_employee_can_create_a_clock_in_event() {
+    public function test_employee_can_create_an_event()
+    {
+        $event = EventType::factory()->create(['name' => 'clock-in']);
 
+        $employee = $this->createEmployee();
+        $response = $this->post(route('events.store'), [
+            'employee_id' => $employee->id,
+            'event_type_id' => $event->id
+        ]);
+        $response->assertSuccessful();
+        $response->assertJson([
+            'data' => [
+                'employee_name' => $employee->name,
+                'event_name' => $event->name,
+            ],
+            'meta' => [
+                'success' => true,
+                'message' => 'event created'
+            ]
+        ]);
     }
 
 
+    public function test_employee_can_not_clock_out_if_they_are_not_clocked_in()
+    {
+        $clock_out_event = EventType::factory()->create(['name' => 'clock-out']);
+
+        $employee = $this->createEmployee();
+        $response = $this->post(route('events.store'), [
+            'employee_id' => $employee->id,
+            'event_type_id' => $clock_out_event->id
+        ]);
+
+        $response->assertStatus(400);
+        $response->assertJson([
+            'data' => null,
+            'meta' => [
+                'success' => false,
+                'message' => 'Sorry, you cannot create an event of that type'
+            ]
+        ]);
+    }
+
+    public function test_employee_cannot_clock_in_twice()
+    {
+        $clock_in_event = EventType::factory()->create(['name' => 'clock-in']);
+        $employee = $this->createEmployee();
+
+        // create the clock-in event
+        Event::factory()->create([
+            'event_type_id' => $clock_in_event->id,
+            'employee_id' => $employee->id,
+        ]);
+        // try and clock-in again
+        $response = $this->post(route('events.store'), [
+            'employee_id' => $employee->id,
+            'event_type_id' => $clock_in_event->id
+        ]);
+        $response->assertStatus(400);
+        $response->assertJson([
+            'data' => null,
+            'meta' => [
+                'success' => false,
+                'message' => 'Sorry, you cannot create an event of that type'
+            ]
+        ]);
+    }
 }

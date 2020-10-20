@@ -100,8 +100,10 @@ class EmployeePayRateController extends BaseController
             $p = EmployeePayRate::where('employee_id', $request->input('employee_id'))
                 ->where('to', null)
                 ->first();
-            $p->to = $request->input('from');
-            $p->save();
+            if ($p) {
+                $p->to = $request->input('from');
+                $p->save();
+            }
 
             // attach the new pay rate
             $employee->payRates()->attach($pay_rate->id, [
