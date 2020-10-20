@@ -184,10 +184,10 @@ class EmployeePayRateTest extends TestCase
             'rate' => $rate_one = $this->faker->randomFloat(2, 5, 10)
         ]);
 
-//        $employee->payRates()->attach($pay_rate->id, [
-//            'from' => $three_months_ago = Carbon::now()->subMonths(3)->startOfDay(),
-//            'to' => null
-//        ]);
+        //        $employee->payRates()->attach($pay_rate->id, [
+        //            'from' => $three_months_ago = Carbon::now()->subMonths(3)->startOfDay(),
+        //            'to' => null
+        //        ]);
 
         $response = $this->post(route('employee-pay-rates.store'), [
             'employee_id' => $employee->id,
@@ -203,7 +203,6 @@ class EmployeePayRateTest extends TestCase
             'from' => $from,
             'to' => $to
         ]);
-
     }
 
 
@@ -213,47 +212,75 @@ class EmployeePayRateTest extends TestCase
         Passport::actingAs($this->admin);
 
         $employee = Employee::factory()->create();
-        $pay_rate = PayRate::factory()->create([
+
+        // create 3 payrates
+        $pay_rate_one = PayRate::factory()->create([
             'rate' => $rate_one = $this->faker->randomFloat(2, 5, 10)
         ]);
-
         $pay_rate_two = PayRate::factory()->create([
-            'rate' => $rate_one = $this->faker->randomFloat(2, 5, 10)
+            'rate' => $rate_two = $this->faker->randomFloat(2, 5, 10)
         ]);
-
         $pay_rate_three = PayRate::factory()->create([
-            'rate' => $rate_one = $this->faker->randomFloat(2, 5, 10)
+            'rate' => $rate_three = $this->faker->randomFloat(2, 5, 10)
         ]);
 
-        $employee->payRates()->attach($pay_rate->id, [
+        // Set the first payrate in the pivot to start 3 months ago, and end 2 months ago
+        $employee->payRates()->attach($pay_rate_one->id, [
             'from' => $three_months_ago = Carbon::now()->subMonths(3)->startOfDay(),
             'to' => $two_months_ago = Carbon::now()->subMonths(2)->startOfDay(),
         ]);
-
+        // set the second payrate in the pivot to start 2 months ago, and have no end,
+        // this would be the "current" payrate so to speak.
         $employee->payRates()->attach($pay_rate_two->id, [
             'from' => $two_months_ago,
             'to' => null
         ]);
 
-
+        // we're now going to create a new pay_rate that starts from tomorrow and have no end-date
         $response = $this->post(route('employee-pay-rates.store'), [
             'employee_id' => $employee->id,
             'pay_rate_id' => $pay_rate_three->id,
+            'from' => $tomorrow = Carbon::now()->addDays(1)->startOfDay(),
+            'to' => null
+        ]);
+        // what we're going to assert is that the payrate 2 that was the current, should now have an 'to' date of tomorrow
+        // which is the start date of the 3rd payrate we've just posted to the endpoint.
+        $response->assertSuccessful();
+
+        $this->assertDatabaseHas('employee_pay_rate', [
+            'employee_id' => $employee->id,
+            'pay_rate_id' => $pay_rate_one->id,
+            'from' => $three_months_ago,
+            'to' => $two_months_ago
+        ]);
+
+        $this->assertDatabaseHas('employee_pay_rate', [
+            'employee_id' => $employee->id,
+            'pay_rate_id' => $pay_rate_two->id,
             'from' => $two_months_ago,
+            'to' => $tomorrow
+        ]);
+
+        $this->assertDatabaseHas('employee_pay_rate', [
+            'employee_id' => $employee->id,
+            'pay_rate_id' => $pay_rate_three->id,
+            'from' => $tomorrow,
             'to' => null
         ]);
 
-        dd($response);
+        // lets pretend its 3 months ago, the payrate that that point should be whatever $rate_one is
+        Carbon::setTestNow($three_months_ago);
+        $current_pay_rate = $employee->getCurrentPayRate();
+        $this->assertTrue($current_pay_rate->rate == $rate_one);
 
-        $response->assertSuccessful();
-        $this->assertDatabaseHas('employee_pay_rate', [
-            'employee_id' => $employee->id,
-            'pay_rate_id' => $pay_rate->id,
-            'from' => $from,
-            'to' => $to
-        ]);
+        // lets pretend its 2 months ago, the payrate that that point should be whatever $rate_two is
+        Carbon::setTestNow($two_months_ago);
+        $current_pay_rate = $employee->getCurrentPayRate();
+        $this->assertTrue($current_pay_rate->rate == $rate_two);
 
+        // lets pretend its tomorrow, the payrate that that point should be whatever $rate_three is
+        Carbon::setTestNow($tomorrow);
+        $current_pay_rate = $employee->getCurrentPayRate();
+        $this->assertTrue($current_pay_rate->rate == $rate_three);
     }
-
-
 }

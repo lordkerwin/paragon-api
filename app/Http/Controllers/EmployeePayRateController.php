@@ -50,7 +50,7 @@ class EmployeePayRateController extends BaseController
      */
     public function store(Request $request)
     {
-//        dd($request);
+        //        dd($request);
         $validator = Validator::make($request->all(), [
             'employee_id' => 'sometimes|required|exists:employees,id',
             'pay_rate_id' => 'sometimes|required|exists:pay_rates,id',
@@ -97,6 +97,11 @@ class EmployeePayRateController extends BaseController
             // if we create a new rate from Jan 01, 2020 to be rate 2, we need to set the 'to' field of
             // the rate 1 pivot to be the start of rate 2.
 
+            $p = EmployeePayRate::where('employee_id', $request->input('employee_id'))
+                ->where('to', null)
+                ->first();
+            $p->to = $request->input('from');
+            $p->save();
 
             // attach the new pay rate
             $employee->payRates()->attach($pay_rate->id, [
@@ -112,8 +117,6 @@ class EmployeePayRateController extends BaseController
         }
 
         return $this->respondSuccess(null, 'Employee Pay Rate attached');
-
-
     }
 
     /**
