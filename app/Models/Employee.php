@@ -3,11 +3,54 @@
 namespace App\Models;
 
 use Carbon\Carbon;
+use Eloquent;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Facades\Log;
 
+/**
+ * App\Models\Employee
+ *
+ * @property int $id
+ * @property string $name
+ * @property string $key
+ * @property string|null $profile_image_url
+ * @property int|null $role_id
+ * @property int|null $department_id
+ * @property int|null $employee_type_id
+ * @property int $active
+ * @property \Illuminate\Support\Carbon|null $deleted_at
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read Department|null $department
+ * @property-read EmployeeType|null $employeeType
+ * @property-read Collection|Event[] $events
+ * @property-read int|null $events_count
+ * @property-read Collection|PayRate[] $payRates
+ * @property-read int|null $pay_rates_count
+ * @property-read Role|null $role
+ * @method static Builder|Employee newModelQuery()
+ * @method static Builder|Employee newQuery()
+ * @method static \Illuminate\Database\Query\Builder|Employee onlyTrashed()
+ * @method static Builder|Employee query()
+ * @method static Builder|Employee whereActive($value)
+ * @method static Builder|Employee whereCreatedAt($value)
+ * @method static Builder|Employee whereDeletedAt($value)
+ * @method static Builder|Employee whereDepartmentId($value)
+ * @method static Builder|Employee whereEmployeeTypeId($value)
+ * @method static Builder|Employee whereId($value)
+ * @method static Builder|Employee whereKey($value)
+ * @method static Builder|Employee whereName($value)
+ * @method static Builder|Employee whereProfileImageUrl($value)
+ * @method static Builder|Employee whereRoleId($value)
+ * @method static Builder|Employee whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Query\Builder|Employee withTrashed()
+ * @method static \Illuminate\Database\Query\Builder|Employee withoutTrashed()
+ * @mixin Eloquent
+ */
 class Employee extends Model
 {
     use HasFactory, SoftDeletes;
