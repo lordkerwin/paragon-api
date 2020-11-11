@@ -69,7 +69,7 @@ class EmployeePayRateTest extends TestCase
         // create the second pivot for a pay rate that was 7 days ago and expires in 30 days
         $employee->payRates()->attach($pay_rate_two->id, [
             'from' => $seven_days_ago,
-            'to' => $thirty_days_future = Carbon::now()->addDay(30)->startOfDay()
+            'to' => $thirty_days_future = Carbon::now()->addDays(30)->startOfDay()
         ]);
         // create the third pivot for a pay rate that starts 30 days from now and doesn't expire
         $employee->payRates()->attach($pay_rate_three->id, [
